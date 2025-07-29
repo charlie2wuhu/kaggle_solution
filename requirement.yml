@@ -1,0 +1,36 @@
+name: kaggle
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  # 核心数据处理
+  - python=3.11
+  - pandas
+  - numpy
+  
+  # 机器学习框架
+  - scikit-learn
+  - xgboost
+  - lightgbm
+  - catboost
+  
+  # 数据可视化
+  - matplotlib
+  - seaborn
+  - plotly
+  
+  # 特征工程与模型优化
+  - scipy
+  - statsmodels
+  - optuna
+  
+  # 辅助工具
+  - jupyter
+  - notebook
+  - tqdm
+  - pip
+  
+  # 通过pip安装的特殊包
+  - pip:
+    - kaggle
+    - category-encoders
