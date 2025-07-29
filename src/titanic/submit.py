@@ -5,16 +5,28 @@ import argparse
 import subprocess
 import sys
 from datetime import datetime
+import config
 
-def find_latest_submission_file(output_dir="output"):
+def find_latest_submission_file(output_dir=None):
     """查找最新的提交文件"""
+    
+    # 使用config中定义的输出目录
+    if output_dir is None:
+        output_dir = config.OUTPUT_FILE
+    
+    # 确保目录存在
+    if not os.path.exists(output_dir):
+        print(f"❌ 输出目录不存在: {output_dir}")
+        print("📁 请先运行训练脚本生成预测文件:")
+        print("   python train.py --model rf --predict")
+        return None
     
     # 查找所有submission文件
     pattern = os.path.join(output_dir, "submission_*.csv")
     files = glob.glob(pattern)
     
     if not files:
-        print("❌ 在output目录下没有找到任何submission文件")
+        print(f"❌ 在{output_dir}目录下没有找到任何submission文件")
         print("📁 请先运行训练脚本生成预测文件:")
         print("   python train.py --model rf --predict")
         return None
@@ -83,14 +95,13 @@ def main():
     parser.add_argument(
         "-m", "--message", 
         type=str, 
-        required=True,
         help="提交信息"
     )
     parser.add_argument(
         "--output-dir",
         type=str,
-        default="output",
-        help="输出文件目录 (默认: output)"
+        default=None,
+        help=f"输出文件目录 (默认: {config.OUTPUT_FILE})"
     )
     parser.add_argument(
         "--file",
@@ -110,14 +121,15 @@ def main():
     
     # 如果只是列出文件
     if args.list:
-        pattern = os.path.join(args.output_dir, "submission_*.csv")
+        output_dir = args.output_dir if args.output_dir else config.OUTPUT_FILE
+        pattern = os.path.join(output_dir, "submission_*.csv")
         files = glob.glob(pattern)
         
         if not files:
             print("❌ 没有找到任何提交文件")
             return
         
-        print(f"📁 在 {args.output_dir} 目录下找到 {len(files)} 个提交文件:")
+        print(f"📁 在 {output_dir} 目录下找到 {len(files)} 个提交文件:")
         
         # 按修改时间排序
         files.sort(key=os.path.getmtime, reverse=True)
@@ -129,6 +141,11 @@ def main():
             print(f"  {i}. {filename} ({mtime_str})")
         
         return
+    
+    # 检查是否提供了提交信息
+    if not args.message:
+        print("❌ 请提供提交信息 (-m)")
+        sys.exit(1)
     
     # 确定要提交的文件
     if args.file:
