@@ -1,0 +1,13 @@
+Columns,Definition,Desc,Types,HasNaN,Enum,Notes,Preview
+PassengerId,Passenger ID,乘客ID,int64,No,,唯一标识符,"1, 2, 3"
+Survived,Survival,生存状态,int64,No,"0 = No, 1 = Yes",0表示死亡，1表示生存,"0, 1"
+Pclass,Ticket class,船票等级,int64,No,"1 = 1st, 2 = 2nd, 3 = 3rd","社会经济地位的代理变量：1st=上层阶级, 2nd=中产阶级, 3rd=下层阶级","3, 1, 3"
+Name,Name,姓名,object,No,,乘客姓名,"""Braund, Mr. Owen Harris"""
+Sex,Sex,性别,object,No,,乘客性别,"male, female"
+Age,Age in years,年龄（年）,float64,Yes,,如果小于1岁则为小数；如果是估计年龄则为xx.5的形式,"22.0, 38.0, 26.0, NaN"
+SibSp,# of siblings / spouses aboard the Titanic,船上兄弟姐妹/配偶数量,int64,No,,"兄弟姐妹包括：兄弟、姐妹、继兄弟、继姐妹；配偶包括：丈夫、妻子（情妇和未婚夫/妻不算）","1, 0, 3"
+Parch,# of parents / children aboard the Titanic,船上父母/子女数量,int64,No,,"父母包括：母亲、父亲；子女包括：女儿、儿子、继女、继子；有些儿童只与保姆同行，因此parch=0","0, 1, 2"
+Ticket,Ticket number,船票号码,object,No,,乘客船票编号,"A/5 21171, PC 17599, 113803"
+Fare,Passenger fare,船票价格,float64,No,,乘客支付的船票费用,"7.25, 71.2833, 53.1"
+Cabin,Cabin number,客舱号码,object,Yes,,乘客的客舱编号,"C85, C123, E46, NaN"
+Embarked,Port of Embarkation,登船港口,object,Yes,"C = Cherbourg, Q = Queenstown, S = Southampton","C=法国瑟堡, Q=爱尔兰昆士敦, S=英国南安普顿","S, C, Q"
