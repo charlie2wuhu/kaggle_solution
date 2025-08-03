@@ -1,0 +1,152 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python 调试程序: 当前文件",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "CV: RF Baseline",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/titanic/train.py",
+            "args": [
+                "--fold", "0",
+                "--model", "rf",
+                "--cv", "1",
+                "--features", "baseline"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/src/titanic"
+        },
+        {
+            "name": "🎯 Train: RandomForest (Recommended Features)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/titanic/train.py",
+            "args": [
+                "--fold", "0",
+                "--model", "rf",
+                "--cv", "1"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/src/titanic"
+        },
+        {
+            "name": "🎯 Train: RandomForest (All Features)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/titanic/train.py",
+            "args": [
+                "--fold", "0",
+                "--model", "rf",
+                "--features", "all"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/src/titanic"
+        },
+        {
+            "name": "🎯 Train: CatBoost (Recommended Features)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/titanic/train.py",
+            "args": [
+                "--fold", "0",
+                "--model", "cat",
+                "--features", "recommended"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/src/titanic"
+        },
+        {
+            "name": "🚀 Final Prediction: RF",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/titanic/train.py",
+            "args": [
+                "--model", "rf",
+                "--features", "recommended",
+                "--predict"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/src/titanic"
+        },
+        {
+            "name": "🔧 Hyperopt: RandomForest (Recommended)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/titanic/hyperopt.py",
+            "args": [
+                "--model", "rf",
+                "--features", "recommended",
+                "--trials", "20"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/src/titanic"
+        },
+        {
+            "name": "🔧 Hyperopt: CatBoost (Quick)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/titanic/hyperopt.py",
+            "args": [
+                "--model", "cat",
+                "--features", "recommended",
+                "--trials", "10"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/src/titanic"
+        },
+        {
+            "name": "🔧 Hyperopt: All Models (Quick)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/titanic/hyperopt.py",
+            "args": [
+                "--features", "recommended",
+                "--trials", "5"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/src/titanic"
+        },
+        {
+            "name": "🧪 Test Preprocessing",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/titanic/preprocessing.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/src/titanic"
+        },
+        {
+            "name": "📝 Create Folds",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/titanic/create_folds.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/src/titanic"
+        },
+        {
+            "name": "🎯 Train with Environment Variables",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/titanic/train.py",
+            "args": [
+                "--fold", "0",
+                "--model", "rf",
+                "--features", "recommended"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/src/titanic",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/src",
+                "KAGGLE_DEBUG": "1"
+            }
+        }
+    ]
+}
